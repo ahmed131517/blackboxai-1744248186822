@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Dashboard - HealthShift</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
+                    <div class="flex items-center flex-shrink-0 px-4">
+                        <span class="text-2xl font-semibold text-gray-800">HealthShift</span>
+                    </div>
+                    <div class="mt-8 flex-grow flex flex-col">
+                        <nav class="flex-1 px-2 space-y-1">
+                            <a href="dashboard.html" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-home mr-3 text-gray-500"></i>
+                                Available Shifts
+                            </a>
+                            <a href="my-applications.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-clipboard-list mr-3 text-gray-500"></i>
+                                My Applications
+                            </a>
+                            <a href="profile.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                                <i class="fas fa-user mr-3 text-gray-500"></i>
+                                Profile
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
+                        <div class="flex items-center">
+                            <div>
+                                <img class="inline-block h-9 w-9 rounded-full" src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Profile">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Dr. Sarah Johnson</p>
+                                <a href="../auth/login.html" class="text-xs font-medium text-gray-500 hover:text-gray-700">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <!-- Top header -->
+            <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+                <button type="button" class="md:hidden px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
+                    <span class="sr-only">Open sidebar</span>
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex-1 px-4 flex justify-between">
+                    <div class="flex-1 flex">
+                        <h1 class="text-2xl font-semibold text-gray-900 my-auto">Available Shifts</h1>
+                    </div>
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                            <span class="sr-only">View notifications</span>
+                            <i class="fas fa-bell"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
+                <div class="py-6">
+                    <!-- Filters -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                        <div class="bg-white shadow rounded-lg mb-6">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="grid grid-cols-1 gap-4 sm:grid-cols-4">
+                                    <div>
+                                        <label for="filterHospital" class="block text-sm font-medium text-gray-700">Hospital</label>
+                                        <select id="filterHospital" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                                            <option value="">All Hospitals</option>
+                                            <option>City General Hospital</option>
+                                            <option>Memorial Medical Center</option>
+                                            <option>St. Mary's Hospital</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="filterSpecialty" class="block text-sm font-medium text-gray-700">Specialty</label>
+                                        <select id="filterSpecialty" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                                            <option value="">All Specialties</option>
+                                            <option>Emergency Medicine</option>
+                                            <option>Cardiology</option>
+                                            <option>Pediatrics</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="filterDate" class="block text-sm font-medium text-gray-700">Date</label>
+                                        <input type="date" id="filterDate" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm rounded-md">
+                                    </div>
+                                    <div class="flex items-end">
+                                        <button type="button" onclick="applyFilters()" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                            <i class="fas fa-filter mr-2"></i>
+                                            Apply Filters
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Available Shifts -->
+                        <div class="bg-white shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                                    <!-- Shift Card 1 -->
+                                    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-gray-900">Emergency Room Nurse</h3>
+                                                    <p class="mt-1 text-sm text-gray-500">City General Hospital</p>
+                                                </div>
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Open
+                                                </span>
+                                            </div>
+                                            <div class="mt-4 space-y-2">
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-calendar mr-2"></i>
+                                                    January 25, 2024
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-clock mr-2"></i>
+                                                    7:00 AM - 3:00 PM
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                                    Emergency Department
+                                                </div>
+                                            </div>
+                                            <div class="mt-6">
+                                                <button onclick="applyForShift(1)" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                                    Apply Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shift Card 2 -->
+                                    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-gray-900">Cardiologist</h3>
+                                                    <p class="mt-1 text-sm text-gray-500">Memorial Medical Center</p>
+                                                </div>
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Open
+                                                </span>
+                                            </div>
+                                            <div class="mt-4 space-y-2">
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-calendar mr-2"></i>
+                                                    January 26, 2024
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-clock mr-2"></i>
+                                                    9:00 AM - 5:00 PM
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                                    Cardiology Department
+                                                </div>
+                                            </div>
+                                            <div class="mt-6">
+                                                <button onclick="applyForShift(2)" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                                    Apply Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Shift Card 3 -->
+                                    <div class="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200">
+                                        <div class="px-4 py-5 sm:p-6">
+                                            <div class="flex justify-between items-start">
+                                                <div>
+                                                    <h3 class="text-lg font-medium text-gray-900">Pediatric Nurse</h3>
+                                                    <p class="mt-1 text-sm text-gray-500">St. Mary's Hospital</p>
+                                                </div>
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Open
+                                                </span>
+                                            </div>
+                                            <div class="mt-4 space-y-2">
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-calendar mr-2"></i>
+                                                    January 27, 2024
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-clock mr-2"></i>
+                                                    3:00 PM - 11:00 PM
+                                                </div>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                                    Pediatrics Wing
+                                                </div>
+                                            </div>
+                                            <div class="mt-6">
+                                                <button onclick="applyForShift(3)" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                                    Apply Now
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed bottom-4 right-4 hidden bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-sm">
+        <div class="flex items-center">
+            <div id="notificationIcon" class="flex-shrink-0">
+                <!-- Icon will be inserted by JavaScript -->
+            </div>
+            <div class="ml-3">
+                <p id="notificationMessage" class="text-sm font-medium text-gray-900">
+                    <!-- Message will be inserted by JavaScript -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('button').addEventListener('click', () => {
+            const sidebar = document.querySelector('.md\\:flex');
+            sidebar.classList.toggle('hidden');
+        });
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            const notificationIcon = document.getElementById('notificationIcon');
+
+            // Set icon based on type
+            const iconClass = type === 'success' ? 'fa-check-circle text-green-500' : 'fa-exclamation-circle text-red-500';
+            notificationIcon.innerHTML = `<i class="fas ${iconClass} text-lg"></i>`;
+
+            // Set message
+            notificationMessage.textContent = message;
+
+            // Show notification
+            notification.classList.remove('hidden');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
+        function applyForShift(shiftId) {
+            // In a real application, you would make an API call here
+            showNotification('Application submitted successfully!', 'success');
+            
+            // Disable the button
+            const button = event.target;
+            button.disabled = true;
+            button.classList.add('opacity-50', 'cursor-not-allowed');
+            button.textContent = 'Applied';
+        }
+
+        function applyFilters() {
+            const hospital = document.getElementById('filterHospital').value;
+            const specialty = document.getElementById('filterSpecialty').value;
+            const date = document.getElementById('filterDate').value;
+
+            // In a real application, you would make an API call here with the filter values
+            showNotification('Filters applied successfully!', 'success');
+        }
+    </script>
+</body>
+</html>
